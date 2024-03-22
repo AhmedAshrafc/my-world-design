@@ -1,0 +1,2079 @@
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2196f3;
+  --primary-color-alternative: #1787e0;
+  --main-transition-duration: 0.3s;
+  --section-padding: 100px;
+  --section-background-color: #ececec;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  /* If you want to change the language of your website like Arabic for example. You can just change the direction to rtl and you will ONLY have to edit some minor changes such as margins/padding/position directions (top/bottom/left/right).... */
+  /* direction: rtl; */
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* End Global Rules */
+
+/* Start of Components */
+.main-title {
+  margin: 0 auto 80px;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 30px;
+  width: fit-content;
+  text-transform: uppercase;
+
+  position: relative;
+  z-index: 1;
+
+  transition: var(--main-transition-duration);
+}
+
+.main-title::before,
+.main-title::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.main-title::before {
+  left: -30px;
+}
+
+.main-title::after {
+  right: -30px;
+}
+
+.main-title:hover::before {
+  z-index: -1;
+  animation: left-move 0.5s linear forwards;
+}
+
+.main-title:hover::after {
+  z-index: -1;
+  animation: right-move 0.5s linear forwards;
+}
+
+.main-title:hover {
+  color: white;
+  border: 1px solid white;
+  transition-delay: 0.5s;
+}
+
+@keyframes left-move {
+  50% {
+    left: 0;
+    width: 12px;
+    height: 12px;
+  }
+
+  100% {
+    left: 0;
+    border-radius: 0;
+    width: 49.5%;
+    height: 100%;
+  }
+}
+
+@keyframes right-move {
+  50% {
+    right: 0;
+    width: 12px;
+    height: 12px;
+  }
+
+  100% {
+    right: 0;
+    border-radius: 0;
+    width: 49.5%;
+    height: 100%;
+  }
+}
+
+/* CSS Seperator Spikes Example */
+.spikes {
+  position: relative;
+}
+
+.spikes::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 30px;
+  z-index: 1;
+  background-image: linear-gradient(135deg, white 25%, transparent 25%),
+    linear-gradient(225deg, white 25%, transparent 25%);
+  background-size: 30px 30px;
+}
+/* End of Components */
+
+/* Start of Header Styles */
+.header {
+  background-color: white;
+  -webkit-box-shadow: 0 0 10px #ddd;
+  -moz-box-shadow: 0 0 10px #ddd;
+  box-shadow: 0 0 10px #ddd;
+
+  /* This position used to stick the MEGA-MENU to the header */
+  position: relative;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Used for responsive design when you re-size the window gets really small so it wraps the content under each others */
+  flex-wrap: wrap;
+
+  /* This position used to stick the mega menu to the header */
+  position: relative;
+}
+
+.header .logo {
+  color: var(--primary-color);
+  font-size: 26px;
+  font-weight: bold;
+  /* Same height as the header (fixed height) in case the ul is displayed to none */
+  height: 73px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .main-nav {
+  display: flex;
+}
+
+.header .main-nav > li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 73px;
+  color: black;
+  /* Use PADDING instead of the gaps with the flex. 0 top/bottom cuz we already have the height fixed. */
+  padding: 0 30px;
+
+  position: relative;
+
+  transition: var(--main-transition-duration);
+
+  overflow: hidden;
+}
+
+/* This will be the little strip above each link when you hover on it */
+.header .main-nav > li > a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: var(--primary-color);
+  top: 0;
+  left: -100%;
+  transition: var(--main-transition-duration);
+}
+
+.header .main-nav > li > a:hover {
+  color: var(--primary-color);
+  background-color: #fafafa;
+}
+
+.header .main-nav > li > a:hover::before {
+  left: 0;
+}
+
+/* Reponsive header for the header on mobiles */
+@media screen and (max-width: 767px) {
+  .header .logo {
+    width: 100%;
+    height: 50px;
+  }
+
+  .header .main-nav {
+    margin: auto;
+  }
+
+  .header .main-nav > li > a {
+    padding: 10px;
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+/* Start of Megamenu */
+.header .mega-menu {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  /* Top is used so it can go from bottom to top when you hover on the link */
+  top: calc(100% + 50px);
+  padding: 30px;
+  background-color: white;
+  border-bottom: 3px solid var(--primary-color);
+  z-index: -1;
+  opacity: 0;
+
+  display: flex;
+  gap: 40px;
+
+  transition: top var(--main-transition-duration),
+    opacity var(--main-transition-duration);
+}
+
+.header .main-nav > li:hover .mega-menu {
+  opacity: 1;
+  z-index: 999;
+  top: calc(100% + 2px);
+}
+
+.header .mega-menu .image img {
+  max-width: 100%;
+}
+
+.header .mega-menu ul.links {
+  /* Measure the width of each link. This is used so when you re-size the text doesn't mess up */
+  min-width: 250px;
+  flex: 1;
+}
+
+.header .mega-menu ul.links li {
+  /* Used to fill the background color when hover */
+  position: relative;
+}
+
+.header .mega-menu ul.links li:not(:last-child) {
+  border-bottom: 1px solid #e9e6e6;
+}
+
+/* Used to fill the background color when hover */
+.header .mega-menu ul.links li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #fafafa;
+  z-index: -1;
+
+  transition: var(--main-transition-duration);
+}
+
+.header .mega-menu ul.links li:hover::before {
+  width: 100%;
+}
+
+.header .mega-menu ul.links li a {
+  display: block;
+  padding: 15px;
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header .mega-menu ul.links li a i {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .header .mega-menu .image {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header .mega-menu {
+    flex-direction: column;
+    gap: 0;
+    padding: 5px;
+    top: 100%;
+  }
+
+  .header .mega-menu ul.links li:last-child {
+    border-bottom: 1px solid #e9e6e6;
+  }
+}
+/* End of Megamenu */
+/* End of Header Styles */
+
+/* Start of Landing Styles */
+.landing {
+  /* Use for that bottom skewness */
+  position: relative;
+}
+
+/* For that bottom skewness */
+.landing::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40px;
+  width: 100%;
+  height: 100%;
+  background-color: #ececec;
+  z-index: -1;
+
+  transform: skewY(-6deg);
+  transform-origin: top left;
+}
+
+.landing .container {
+  min-height: calc(100vh - 73px);
+
+  display: flex;
+  align-items: center;
+
+  padding-bottom: 120px;
+}
+
+/* Flex 1 is used so every content has the same space and nothing be bigger than the other */
+.landing .text {
+  flex: 1;
+}
+
+.landing .text h1 {
+  font-size: 40px;
+  margin: 0;
+  letter-spacing: -2px;
+}
+
+.landing .text p {
+  font-size: 23px;
+  line-height: 1.7;
+  margin: 5px 0 0;
+  color: #666;
+  max-width: 500px;
+}
+
+.landing .image img {
+  width: 600px;
+
+  /* Position relative so the animation can be applied on the image */
+  position: relative;
+  animation: up-and-down 5s linear infinite;
+}
+
+.landing .go-down-arrow {
+  color: var(--primary-color);
+
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateY(-50%);
+
+  transition: var(--main-transition-duration);
+}
+
+.landing .go-down-arrow:hover {
+  color: var(--primary-color-alternative);
+}
+
+.landing .go-down-arrow i {
+  animation: bouncing-arrow 1.5s infinite;
+}
+
+@media screen and (max-width: 991px) {
+  .landing .image {
+    display: none;
+  }
+
+  .landing .text {
+    text-align: center;
+  }
+
+  .landing .text p {
+    margin: 10px auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .landing .text h1 {
+    font-size: 28px;
+  }
+
+  .landing .text p {
+    font-size: 18px;
+  }
+}
+/* Start of Landing Animations */
+@keyframes up-and-down {
+  0% {
+    top: 0;
+  }
+
+  50% {
+    top: -50px;
+  }
+
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes bouncing-arrow {
+  0%,
+  10%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40%,
+  60% {
+    transform: translateY(-20px);
+  }
+}
+/* End of Landing Animations */
+
+/* End of Landing Styles */
+
+/* Start of Articles Section */
+.articles {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+
+  position: relative;
+}
+
+.articles .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.articles .container .box {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+
+  transition: transform var(--main-transition-duration),
+    box-shadow var(--main-transition-duration);
+}
+
+.articles .container .box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.articles .box img {
+  max-width: 100%;
+}
+
+.articles .box .content {
+  padding: 20px;
+}
+
+.articles .box .content h3 {
+  margin: 0;
+}
+
+.articles .box .content p {
+  margin-top: 10px;
+  line-height: 1.5;
+  color: #777;
+}
+
+.articles .box .info {
+  padding: 20px;
+  border-top: 1px solid #e6e6e7;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.articles .box .info a {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.articles .box .info i {
+  color: var(--primary-color);
+}
+
+.articles .box:hover .info i {
+  animation: moving-arrow 0.6s linear infinite;
+}
+
+@keyframes moving-arrow {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(10px);
+  }
+}
+/* End of Articles Section */
+
+/* Start of Gallery Styles */
+.gallery {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background-color);
+
+  position: relative;
+}
+
+.gallery .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.gallery .container .box {
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0px 12px 20px 0 rgba(0, 0, 0, 0.13),
+    0px 2px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+.gallery .container .box .image {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Flashing animation */
+.gallery .container .box .image::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: 2;
+}
+
+.gallery .container .box .image:hover::before {
+  animation: flashing 0.7s;
+}
+
+.gallery .container .box .image img {
+  max-width: 100%;
+
+  transition: var(--main-transition-duration);
+}
+
+.gallery .container .box .image:hover img {
+  transform: rotate(5deg) scale(1.1);
+}
+
+/* Whole container spikes */
+/* .spikes {
+  position: relative;
+}
+
+.spikes::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 30px;
+  z-index: 1;
+  background-image: linear-gradient(135deg, white 25%, transparent 25%),
+    linear-gradient(225deg, white 25%, transparent 25%);
+  background-size: 30px 30px;
+} */
+
+@keyframes flashing {
+  0%,
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    /* 200% so the before element goes beyond the box not exactly within the box */
+    width: 200%;
+    height: 200%;
+  }
+}
+/* End of Gallery Styles */
+
+/* Start of Features Styles */
+.features {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: white;
+
+  position: relative;
+}
+
+.features .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.features .container .box {
+  text-align: center;
+  border: 1px solid #333;
+}
+
+.features .box .img-holder {
+  position: relative;
+  overflow: hidden;
+}
+
+/* The image overlay */
+.features .box .img-holder::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 100%;
+  height: 100%;
+}
+
+/* The big border when you hover it changes direction */
+.features .box .img-holder::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0px 0px 170px 500px;
+  border-color: transparent transparent white transparent;
+  transition: var(--main-transition-duration);
+}
+
+.features .box:hover .img-holder::after {
+  border-width: 170px 500px 170px 0px;
+}
+
+.features .box h2 {
+  position: relative;
+  font-size: 40px;
+  margin: auto;
+  width: fit-content;
+}
+
+/* The little strip under the heading */
+.features .box h2::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: 5px;
+}
+
+.features .box p {
+  line-height: 2;
+  font-size: 20px;
+  margin: 30px 0;
+  padding: 25px;
+  color: #777;
+}
+
+.features .box a {
+  display: block;
+  border: 3px solid transparent;
+  width: fit-content;
+  margin: 0 auto 30px;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 10px 30px;
+  border-radius: 6px;
+
+  transition: var(--main-transition-duration);
+}
+
+/* Start Quality Box */
+/* Overlay */
+.features .quality .img-holder::before {
+  background-color: rgba(244, 64, 54, 0.6);
+}
+
+/* Border under the heading */
+.features .quality h2::after {
+  background-color: #f44036;
+}
+
+.features .quality a {
+  color: #f44036;
+  border-color: #f44036;
+  background-image: linear-gradient(to right, #f44036 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+
+/* Start Time Box */
+/* Overlay */
+.features .time .img-holder::before {
+  background-color: rgba(0, 150, 136, 0.6);
+}
+
+/* Border under the heading */
+.features .time h2::after {
+  background-color: #009688;
+}
+
+.features .time a {
+  color: #009688;
+  border-color: #009688;
+  background-image: linear-gradient(to right, #009688 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+
+/* Start Passion Box */
+/* Overlay */
+.features .passion .img-holder::before {
+  background-color: rgba(3, 169, 244, 0.6);
+}
+
+/* Border under the heading */
+.features .passion h2::after {
+  background-color: #03a9f4;
+}
+
+.features .passion a {
+  color: #03a9f4;
+  border-color: #03a9f4;
+  background-image: linear-gradient(to right, #03a9f4 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+
+.features .box:hover a {
+  background-position: left bottom;
+  color: white;
+}
+
+.features .box .img-holder img {
+  max-width: 100%;
+}
+/* End of Features Styles */
+
+/* Start of Testimonials Styles */
+.testimonials {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background-color);
+
+  position: relative;
+}
+
+.testimonials .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.testimonials .container .box {
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+
+  position: relative;
+}
+
+.testimonials .box img {
+  position: absolute;
+  right: -10px;
+  top: -20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 10px solid var(--section-background-color);
+}
+
+.testimonials .box h3 {
+  margin: 0 0 10px;
+}
+
+.testimonials .box .title {
+  display: block;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.testimonials .box .rate .filled {
+  color: gold;
+}
+
+.testimonials .box p {
+  line-height: 1.5;
+  color: #777;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+/* End of Testimonials Styles */
+
+/* Start of Team Members Styles */
+.team {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+}
+
+.team .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.team .box {
+  position: relative;
+}
+
+/* This is for the rigid background of the box */
+.team .box::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: calc(100% - 60px);
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  z-index: -2;
+
+  transition: var(--main-transition-duration);
+}
+
+.team .box::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  /* Starts at width 0 */
+  width: 0;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  /* z-index -1 so it can be above the before element */
+  z-index: -1;
+
+  transition: var(--main-transition-duration);
+}
+
+.team .box:hover::after {
+  width: calc(100% - 60px);
+}
+
+.team .box .data {
+  display: flex;
+  align-items: center;
+
+  padding-top: 60px;
+}
+
+.team .box .data .social {
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.team .box .data .social a {
+  width: 60px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team .box .data .social a:hover i {
+  color: var(--primary-color);
+}
+
+.team .box .data .social i {
+  color: #777;
+
+  transition: var(--main-transition-duration);
+}
+
+.team .box .info {
+  padding-left: 80px;
+}
+
+.team .box .info h3 {
+  margin-bottom: 0;
+  color: var(--primary-color);
+  font-size: 22px;
+
+  transition: var(--main-transition-duration);
+}
+
+.team .box:hover .info h3 {
+  color: #777;
+}
+
+.team .box .info p {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.team .box .data img {
+  width: calc(100% - 60px);
+  border-radius: 10px;
+
+  transition: var(--main-transition-duration);
+}
+
+.team .box:hover img {
+  filter: grayscale(100%);
+}
+
+@media screen and (max-width: 767px) {
+  .team .box::before {
+    width: 100%;
+  }
+
+  .team .box .data {
+    flex-direction: column;
+  }
+
+  .team .box .data .social {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .team .box .data img {
+    margin: 0 auto;
+  }
+
+  .team .box .info {
+    text-align: center;
+    padding-left: 0px;
+  }
+}
+/* End of Team Members Styles */
+
+/* Start of Services Styles */
+.services {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+  background-color: var(--section-background-color);
+}
+
+.services .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.services .box {
+  background-color: white;
+  box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.13), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+
+  counter-increment: services;
+
+  position: relative;
+
+  transition: var(--main-transition-duration);
+}
+
+/* The blu.e strip above each box when you hover on it */
+.services .box::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  transform: translateX(-50%);
+  height: 3px;
+  width: 0;
+  background-color: var(--primary-color);
+
+  transition: var(--main-transition-duration);
+}
+
+.services .box:hover {
+  transform: translateY(-10px);
+}
+
+.services .box:hover::before {
+  width: 100%;
+}
+
+.services .box i {
+  display: block;
+  margin: 40px auto 20px;
+  text-align: center;
+  color: #d5d5d5;
+}
+
+.services .box h3 {
+  text-align: center;
+  margin: 20px 0 40px;
+  font-size: 25px;
+  color: var(--primary-color);
+}
+
+.services .box .info {
+  padding: 15px;
+  background-color: #f9f9f9;
+  text-align: right;
+
+  position: relative;
+}
+
+.services .box .info a {
+  color: var(--primary-color);
+}
+
+.services .box .info::before {
+  content: "0" counter(services);
+  position: absolute;
+  background: var(--primary-color);
+  color: white;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 80px;
+  font-size: 30px;
+  font-weight: bold;
+  padding-right: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.services .box .info::after {
+  content: "";
+  position: absolute;
+  background-color: #d5d5d5;
+  top: 0;
+  left: 80px;
+  width: 50px;
+  height: calc(100% - 0.4px);
+  transform: skewX(-30deg);
+}
+/* End of Services Styles */
+
+/* Start of Our Skills Styles */
+.our-skills {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+}
+
+.our-skills .container {
+  display: flex;
+  align-items: center;
+}
+
+/* So it grows completely to its right size */
+/* Also it helps in the responsive design process. When you resize to smaller size it will take the rest of the space. It acts like the 1fr in grid */
+.our-skills .skills {
+  flex: 1;
+}
+
+.our-skills .skill h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.our-skills .skill h3 span {
+  font-size: 12px;
+  border: 1px solid #ccc;
+  padding: 3px 5px;
+  border-radius: 4px;
+  color: var(--primary-color);
+}
+
+.our-skills .skill .the-progress {
+  height: 30px;
+  background-color: #eee;
+
+  position: relative;
+}
+
+.our-skills .skill .the-progress span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: var(--primary-color);
+}
+
+/* When you have two things beside each others using the flex, it's better to remove any images in the medium screen sizes (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  .our-skills .container img {
+    display: none;
+  }
+}
+/* End of Our Skills Styles */
+
+/* Start of How It Works Styles */
+.work-steps {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+  background-color: var(--section-background-color);
+}
+
+.work-steps .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.work-steps .image {
+  max-width: 100%;
+  margin-right: 100px;
+}
+
+.work-steps .info {
+  flex: 1;
+}
+
+.work-steps .info .box {
+  background-color: #f6f5f5;
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 2px solid white;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  z-index: 1;
+}
+
+/* Flashing animation just like the gallery one with slight difference */
+.work-steps .info .box::before {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ededed;
+  z-index: -1;
+
+  transition: var(--main-transition-duration);
+}
+
+.work-steps .info .box:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.work-steps .info .box img {
+  width: 64px;
+  margin-right: 30px;
+}
+
+.work-steps .info .box h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.work-steps .info .box p {
+  color: #777;
+  line-height: 1.7;
+  /*Top(10)  Right(0)  Bottom(0) left(0)*/
+  margin: 10px 0 0;
+  font-size: 18px;
+}
+
+/* So they become under each other from 991px to all the way bottom even mobiles. Instead of always displaying the image to none */
+@media screen and (max-width: 991px) {
+  .work-steps .container {
+    flex-direction: column;
+  }
+
+  .work-steps .image {
+    margin: 50px auto;
+  }
+}
+
+/* On the mobile screens the boxes will have flex direction column and removed the margins on the little image (icon) */
+@media screen and (max-width: 767px) {
+  .work-steps .box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .work-steps .info .box img {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+/* End of How It Works Styles */
+
+/* Start of Latest Events Styles */
+.events {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+}
+
+.events::before {
+  content: url(../images/dots.png);
+  position: absolute;
+  left: 0;
+  bottom: 200px;
+}
+
+.events::after {
+  content: url(../images/dots.png);
+  position: absolute;
+  right: 0;
+  top: 200px;
+}
+
+.events .container {
+  display: flex;
+  align-items: center;
+  /* We wrapped it cuz the subscribe section will go underneath of them */
+  flex-wrap: wrap;
+}
+
+/* This will take 450px of the flex container */
+.events img {
+  max-width: 450px;
+}
+
+/* This will take the rest of the flex container AKA 1fr */
+.events .info {
+  flex: 1;
+}
+
+.events .info .time {
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+  gap: 10px;
+  justify-content: center;
+}
+
+.events .info .time .unit {
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  text-align: center;
+  width: 75px;
+
+  transition: var(--main-transition-duration);
+}
+
+.events .info .time .unit span {
+  display: block;
+}
+
+/* These are for the first span (the numbers) */
+.events .info .time .unit span:first-child {
+  font-size: 35px;
+  padding: 15px;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* These are for the last span (the words) */
+.events .info .time .unit span:last-child {
+  padding: 8px 10px;
+  font-size: 13px;
+  border-top: 1px solid #d4d4d4;
+
+  transition: var(--main-transition-duration);
+}
+
+.events .info .time .unit:hover,
+.events .info .time .unit:hover span:last-child {
+  border-color: var(--primary-color);
+}
+
+.events .title {
+  text-align: center;
+  margin: 40px 0 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.events .description {
+  text-align: center;
+  line-height: 1.7;
+  font-size: 19px;
+  color: #777;
+}
+
+/* So it doesn't be next to them it will act as a block with 100% width */
+.events .subscribe {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.events .subscribe form {
+  width: 600px;
+  margin: 20px auto;
+  padding: 30px 40px;
+  background-color: #f6f5f5;
+  border-radius: 50px;
+
+  /* Display flex so the submit button and the input field comes exactly next to each other */
+  display: flex;
+  gap: 20px;
+}
+
+.events .subscribe form input[type="email"] {
+  padding: 20px;
+  border-radius: 50px;
+  border: none;
+  /* So it takes 1fr of the flex container instead of just giving it a fixed width */
+  flex: 1;
+  caret-color: var(--primary-color);
+}
+
+.events .subscribe form input[type="email"]:focus {
+  outline: none;
+}
+
+/* So once you click on the input field the placeholder will disappear */
+.events .subscribe form input[type="email"]::placeholder {
+  transition: opacity var(--main-transition-duration);
+}
+
+.events .subscribe form input[type="email"]:focus::placeholder {
+  opacity: 0;
+}
+
+.events .subscribe form input[type="submit"] {
+  border-radius: 50px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+
+  transition: var(--main-transition-duration);
+}
+
+.events .subscribe form input[type="submit"]:hover {
+  background-color: var(--primary-color-alternative);
+}
+
+@media screen and (max-width: 991px) {
+  .events img {
+    display: none;
+  }
+
+  .events::before,
+  .events::after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .events .subscribe form {
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 0;
+    flex-direction: column;
+  }
+
+  .events .subscribe form input[type="email"] {
+    border-radius: 0;
+  }
+
+  .events .subscribe form input[type="submit"] {
+    border-radius: 0;
+  }
+}
+/* End of Latest Events Styles */
+
+/* Start of Pricing Plans Styles */
+.pricing {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+  background-color: var(--section-background-color);
+}
+
+.pricing::before {
+  content: url(../images/dots.png);
+  position: absolute;
+  left: 0;
+  bottom: 200px;
+  background-repeat: no-repeat;
+}
+
+.pricing::after {
+  content: url(../images/dots.png);
+  position: absolute;
+  right: 0;
+  top: 200px;
+  background-repeat: no-repeat;
+}
+
+.pricing .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.pricing .box {
+  position: relative;
+  /* Nice units for box shadowing (Recommended) */
+  box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.13), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+  background-color: white;
+  text-align: center;
+  z-index: 1;
+
+  transition: var(--main-transition-duration);
+}
+
+/* Transition coming from opposite directions filling the box */
+.pricing .box::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0px;
+  height: 50%;
+  background-color: #f6f6f6;
+  z-index: -1;
+
+  transition: var(--main-transition-duration);
+}
+
+.pricing .box::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0px;
+  height: 50%;
+  background-color: #f6f6f6;
+  z-index: -1;
+
+  transition: var(--main-transition-duration);
+}
+
+.pricing .box:hover::before,
+.pricing .box:hover::after {
+  width: 100%;
+}
+
+.pricing .box.popular .label {
+  position: absolute;
+  /* Transforms the text to another direction (any direction you want). Writing Mode */
+  writing-mode: vertical-rl;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  padding: 10px 10px 35px 10px;
+  font-size: 18px;
+  right: 20px;
+  width: 40px;
+}
+
+.pricing .box.popular .label::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-width: 20px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+}
+
+.pricing .box .title {
+  font-weight: bold;
+  margin: 30px 0;
+  font-size: 25px;
+  letter-spacing: -1px;
+}
+
+.pricing .box img {
+  width: 80px;
+  margin-bottom: 30px;
+}
+
+.pricing .box .price {
+  margin-bottom: 20px;
+}
+
+.pricing .box .price .amount {
+  display: block;
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+
+.pricing .box .price .time {
+  color: #777;
+}
+
+.pricing .box ul {
+  text-align: left;
+}
+
+.pricing .box ul li {
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+/* Tiny icon using the font awesome with the before element and its unicode. Find it at their website */
+.pricing .box ul li::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  margin-right: 10px;
+  /* You must add this font weight or else it will not appear */
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.pricing .box a {
+  display: block;
+  width: fit-content;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  margin: 30px auto 40px;
+  padding: 15px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+
+  transition: var(--main-transition-duration);
+}
+
+.pricing .box a:hover {
+  background-color: var(--primary-color-alternative);
+  color: white;
+  border-color: var(--primary-color-alternative);
+}
+
+/* To make the POPULAR box slightly to the top ONLY in the large screens after it NO. */
+@media screen and (min-width: 1200px) {
+  .pricing .box.popular {
+    top: -20px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .pricing::before,
+  .pricing::after {
+    display: none;
+  }
+}
+/* End of Pricing Plans Styles */
+
+/* Start of Top Videos Styles */
+.videos {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+}
+
+.videos .holder {
+  display: flex;
+  justify-content: center;
+  background-color: var(--section-background-color);
+  border: 1px solid #ddd;
+}
+
+.videos .holder .list {
+  min-width: 300px;
+  background-color: white;
+}
+
+.videos .holder .list .name {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fafaf4;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.videos .holder .list ul li {
+  padding: 20px;
+  border-top: 1px solid var(--section-background-color);
+  cursor: pointer;
+
+  transition: var(--main-transition-duration);
+}
+
+.videos .holder .list ul li:hover {
+  background-color: #fafafa;
+  color: var(--primary-color);
+}
+
+.videos .holder .list ul li span {
+  display: block;
+  margin-top: 10px;
+  color: #777;
+}
+
+.videos .holder .preview {
+  background-color: #e2e2e2;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.videos .holder .preview img {
+  max-width: 100%;
+}
+
+.videos .holder .preview .info {
+  padding: 20px;
+  background-color: white;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .videos .holder {
+    flex-direction: column;
+  }
+}
+/* End of Top Videos Styles */
+
+/* Start of Stats Styles */
+.stats {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+  background-image: url("../images/stats.jpg");
+  background-size: cover;
+  min-height: 300px;
+}
+
+.stats .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Overlay using the before element */
+.stats::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.stats h2 {
+  font-weight: bold;
+  font-size: 40px;
+  width: fit-content;
+  margin: 0 auto 50px;
+
+  position: relative;
+}
+
+.stats .box {
+  background-color: white;
+  padding: 30px 15px;
+  text-align: center;
+  opacity: 0.8;
+
+  position: relative;
+
+  transition: var(--main-transition-duration);
+}
+
+/* Originally the opacity is 0.8 when you hover it will be 1 */
+.stats .box:hover {
+  opacity: 1;
+}
+
+/* Animation going up and down of the box */
+.stats .box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 0;
+  background-color: var(--primary-color);
+
+  transition: 1s;
+}
+
+.stats .box::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background-color: var(--primary-color);
+
+  transition: 1s;
+}
+
+.stats .box:hover::before,
+.stats .box:hover::after {
+  height: 100%;
+}
+
+.stats .box .number {
+  display: block;
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.stats .box .text {
+  color: var(--primary-color);
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+}
+/* End of Stats Styles */
+
+/* Start of Discount Section */
+.discount {
+  min-height: 100vh;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.discount .image {
+  background-image: url("../images/discount-background1.jpg");
+  background-size: cover;
+  color: white;
+
+  /* So they can split EXACLTY at the center of the page. Each section now have 50% of the flex */
+  flex-basis: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  z-index: 1;
+
+  /* Background change animation */
+  animation: change-background 10s linear infinite;
+}
+
+/* The overlay */
+.discount .image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(23, 135, 224, 0.97);
+  z-index: -1;
+}
+
+.discount .form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* So they can split EXACLTY at the center of the page. Each section now have 50% of the flex */
+  flex-basis: 50%;
+}
+
+.discount .form .input {
+  display: block;
+  /* Input with width 100% so it can fit ALL the available space */
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 15px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.discount .form textarea.input {
+  height: 200px;
+  resize: none;
+}
+
+.discount .form .input:focus {
+  outline: none;
+  caret-color: var(--primary-color);
+}
+
+.discount .form input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+
+  transition: var(--main-transition-duration);
+}
+
+.discount .form input[type="submit"]:hover {
+  background-color: var(--primary-color-alternative);
+}
+
+.discount .content {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.discount .content h2 {
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+
+.discount .content p {
+  line-height: 1.6;
+  font-size: 18px;
+  /* max-width for the paragraph so the text doesn't stretch and it becomes in the middle. Squash it */
+  max-width: 500px;
+}
+
+.discount .content img {
+  width: 300px;
+  max-width: 100%;
+}
+
+/* Background change animation */
+@keyframes change-background {
+  0%,
+  100% {
+    background-image: url("../images/discount-background1.jpg");
+  }
+
+  50% {
+    background-image: url("../images/discount-background2.jpg");
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .discount .image {
+    flex-basis: 100%;
+  }
+
+  .discount .form {
+    flex-basis: 100%;
+    padding: 20px;
+  }
+
+  .discount .content img {
+    padding: 20px;
+  }
+}
+/* End of Discount Section */
+
+/* Start of Footer Styles */
+.footer {
+  background-color: #191919;
+  padding: 70px 0 0;
+}
+
+.footer .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer .box h3 {
+  color: white;
+  font-size: 50px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.footer .box .social {
+  display: flex;
+}
+
+.footer .box .social li {
+  margin-right: 10px;
+}
+
+.footer .box .social li a {
+  background-color: #313131;
+  color: #898989;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+
+  transition: var(--main-transition-duration);
+}
+
+.footer .box .social .facebook:hover {
+  background-color: #1877f2;
+}
+
+.footer .box .social .twitter:hover {
+  background-color: #1da1f2;
+}
+
+.footer .box .social .youtube:hover {
+  background-color: #ff0000;
+}
+
+.footer .box .text {
+  line-height: 2;
+  color: #b9b9b9;
+}
+
+.footer .box .links li {
+  padding: 15px 0;
+
+  transition: var(--main-transition-duration);
+}
+
+.footer .box .links li:not(:last-child) {
+  border-bottom: 1px solid #444;
+}
+
+.footer .box .links li:hover {
+  padding-left: 10px;
+}
+
+.footer .box .links li:hover a {
+  color: white;
+}
+
+.footer .box .links li a {
+  color: #b9b9b9;
+
+  transition: var(--main-transition-duration);
+}
+
+.footer .box .links li a::before {
+  content: "\F101";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.footer .box .line {
+  display: flex;
+  align-items: center;
+  color: #898989;
+  margin-bottom: 30px;
+}
+
+.footer .box .line i {
+  font-size: 25px;
+  color: var(--primary-color);
+  margin-right: 10px;
+}
+
+.footer .box .line .info {
+  line-height: 1.7;
+  flex: 1;
+}
+
+.footer .box .line .info span {
+  display: block;
+}
+
+.footer .footer-gallery img {
+  width: 78px;
+  /* Border for an image so it can appear like it's stamped with some padding */
+  border: 3px solid white;
+  margin: 2px;
+}
+
+.footer .copyright {
+  padding: 25px 0;
+  text-align: center;
+  color: white;
+  margin: 50px 0 0;
+  border-top: 1px solid #444;
+}
+
+.footer .copyright i {
+  color: red;
+  margin: 0 3px;
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    text-align: center;
+  }
+
+  .footer .box .social {
+    justify-content: center;
+  }
+
+  .footer .box .line {
+    flex-direction: column;
+  }
+
+  .footer .box .line i {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+}
+/* End of Footer Styles */
